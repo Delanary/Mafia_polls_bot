@@ -1,4 +1,5 @@
-from config import token, login, chat
+from config import token, chat
+# you need token and chat_id in your config file
 
 import vk_api
 from random import randrange
