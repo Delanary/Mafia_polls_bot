@@ -11,8 +11,8 @@ def main():
     while True:
         try:
             if datetime.datetime.now().hour != 15:
-                time.sleep(60 * 60)
                 print(datetime.datetime.now().hour)
+                time.sleep(60 * 60)
                 continue
             vk_session = vk_api.VkApi(token=token)
             vk = vk_session.get_api()
