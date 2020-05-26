@@ -22,9 +22,11 @@ def main():
                 add_answers="[\"21:00\", \"21:30\", \"22:00\", \"22:30\", \"Позже\", \"хз\", \"Нет\"]")
             poll_att = "poll{}_{}".format(poll['owner_id'], poll['id'])
             vk.messages.send(peer_id=2000000000 + chat, message="", random_id=randrange(10 ** 9), attachment=poll_att)
+            time.sleep(60*60)
         except KeyboardInterrupt as e:
             print('Get interrupt signal, stopping')
             break
+
         except:
             pass
 
