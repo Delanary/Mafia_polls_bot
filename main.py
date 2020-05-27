@@ -1,4 +1,4 @@
-from config import token, chat
+from config import token, get_chat
 # you need token and chat_id in your config file
 
 import vk_api
@@ -16,9 +16,8 @@ def captcha_handler(captcha):
 def main():
     while True:
         try:
-            if len(sys.argv) == 1:
-                sys.argv.append("-test")
-            if datetime.datetime.now().hour != 15 and (sys.argv[1] == "-prod"):
+            chat, is_test = get_chat(sys.argv)
+            if datetime.datetime.now().hour != 15 and not is_test:
                 print(datetime.datetime.now().hour)
                 time.sleep(60 * 60)
                 continue
