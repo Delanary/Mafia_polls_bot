@@ -16,7 +16,9 @@ def captcha_handler(captcha):
 def main():
     while True:
         try:
-            if datetime.datetime.now().hour != 15 and not sys.argv[1] == "test":
+            if len(sys.argv) == 1:
+                sys.argv.append("-test")
+            if datetime.datetime.now().hour != 15 and (sys.argv[1] == "-prod"):
                 print(datetime.datetime.now().hour)
                 time.sleep(60 * 60)
                 continue
