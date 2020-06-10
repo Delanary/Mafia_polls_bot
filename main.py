@@ -17,6 +17,7 @@ flag = True
 
 
 def main():
+    global flag
     while True:
         try:
             chat, is_test = get_chat(sys.argv)
