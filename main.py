@@ -13,14 +13,18 @@ def captcha_handler(captcha):
     return captcha.try_again(key)
 
 
+flag = True
+
+
 def main():
     while True:
         try:
             chat, is_test = get_chat(sys.argv)
-            if datetime.datetime.now().hour != 15 and not is_test:
-                print(datetime.datetime.now().hour)
+            print(datetime.datetime.now().hour)
+            if (datetime.datetime.now().hour != 15 or not flag) and not is_test:
                 time.sleep(60 * 60)
                 continue
+            flag = False
             vk_session = vk_api.VkApi(token=token, captcha_handler=captcha_handler)
             vk = vk_session.get_api()
             poll = vk.polls.create(
@@ -29,7 +33,6 @@ def main():
             poll_att = "poll{}_{}".format(poll['owner_id'], poll['id'])
             id = randrange(10 ** 9)
             message_id = vk.messages.send(peer_id=2000000000 + chat, message="", random_id=id, attachment=poll_att)
-            print(id)
             try:
                 vk.messages.pin(peer_id=2000000000 + chat, message_id=message_id)
             except Exception as e:
