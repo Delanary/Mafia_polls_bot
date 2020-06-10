@@ -22,7 +22,7 @@ def main():
         try:
             chat, is_test = get_chat(sys.argv)
             print(datetime.datetime.now().hour)
-            if (datetime.datetime.now().hour != 15 or not flag) and not is_test:
+            if (datetime.datetime.now().hour != 15 and not flag) and not is_test:
                 time.sleep(60 * 60)
                 continue
             flag = False
